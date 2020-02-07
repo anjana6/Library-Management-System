@@ -10,10 +10,10 @@ router.post('/singup', async (req,res) =>{
             res.status(400).json({error: "email is already exist"})
         }
 
-        const newUser = await new User(
+        const user = await new User(
             req.body
         )
-        await newUser.save();
+        await user.save();
         res.json("success");
     } catch (err) {
         console.error(err.message);
