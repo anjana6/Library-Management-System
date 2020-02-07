@@ -3,9 +3,20 @@ const router = express.Router();
 const Book = require('../model/Book');
 const {check,validationResult} = require('express-validator');
 
-router.post('/book',async (req,res) => {
+// add the book into database
+router.post('/book',
+    [
+        check("bookId","BookId is required").notEmpty(),
+        check("title","Book Name is required").notEmpty(),
+        check("autherName","AutherName is required").notEmpty(),
+        check("cost","Book price is required").notEmpty(),
+    ],async (req,res) => {
     
     try {
+        const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
         const book = new Book(
             req.body
         )

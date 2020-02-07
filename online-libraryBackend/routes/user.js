@@ -6,9 +6,9 @@ const bcrypt = require('bcryptjs');
 
 router.post('/singUp',
     [
-        check("Fname","Fname is required").isEmpty(),
-        check("Lname","Lname is required").isEmpty(),
-        check("nic","NIC is required").isEmpty(),
+        check("Fname","Fname is required").notEmpty(),
+        check("Lname","Lname is required").notEmpty(),
+        check("nic","NIC is required").notEmpty(),
         check("email","Please include a valid email").isEmail(),
         check("password","password with 6 or more character").isLength({min:6})
     ], async (req,res) =>{
@@ -39,8 +39,15 @@ router.post('/singUp',
     }
 })
 
-router.post('/singIn',async (req,res)=>{
+router.post('/singIn',[
+    check("email","Please include a valid email").isEmail(),
+    check("password","password with 6 or more character").isLength({min:6})
+],async (req,res)=>{
     try {
+        const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
         const user = await User.findOne({email:req.body.email});
         if(!user){
             return res.status(400).json({error:"You are not Register"});
