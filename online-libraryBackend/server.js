@@ -3,6 +3,7 @@ const connectDB = require("./config/db");
 const userRouter = require("./routes/user");
 const bookRouter = require("./routes/book");
 const selectingRouter = require("./routes/selectingBook");
+const profileRouter = require("./routes/profile");
 
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json({extended:false}));
 app.use("/",userRouter);
 app.use("/",bookRouter);
 app.use("/",selectingRouter);
+app.use("/",profileRouter);
 
 
 const port = process.env.PORT || 5000;

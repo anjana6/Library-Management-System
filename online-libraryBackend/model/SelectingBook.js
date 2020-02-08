@@ -14,6 +14,9 @@ const SelectingBookSchema = new mongoose.Schema({
     },
     returnedDate:{
         type:Date
+    },
+    return:{
+        type:Boolean
     }
 })
 
