@@ -22,6 +22,10 @@ const BooksSchema = new mongoose.Schema({
     },
     description:{
         type:String
+    },
+    numberOfBooks:{
+        type:Number,
+        required:true
     }
 })
 

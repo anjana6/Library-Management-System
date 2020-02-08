@@ -3,6 +3,19 @@ const router = express.Router();
 const Book = require('../model/Book');
 const {check,validationResult} = require('express-validator');
 
+// get all the books datils
+router.get('/',async (req,res) =>{
+    try {
+        const books = await Book.find();
+        res.status(200).json({books});
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+        
+    }
+  
+
+})
 // add the book into database
 router.post('/book',
     [
