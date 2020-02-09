@@ -2,12 +2,13 @@ const express  = require('express');
 const router = express.Router()
 const User = require("../model/User");
 const SelectingBook = require("../model/SelectingBook");
+const auth = require('../middleware/auth');
 
-router.get('/detail/:id',async (req,res) =>{
+router.get('/profile',auth,async (req,res) =>{
     try {
-        console.log(req.params.id);
-        // const user =await User.findOne({studentNo: req.params.id});
-        // res.status(200).json(user);
+        
+        const user =await  User.findOne({_id:req.userId}).populate('Fname,Lname,studentNo');
+        res.status(200).json(user);
         
     } catch (err) {
         console.error(err.message);
