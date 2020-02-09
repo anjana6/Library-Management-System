@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Book = require('../model/Book');
 const {check,validationResult} = require('express-validator');
-
+const auth = require('../middleware/auth');
 // get all the books datils
-router.get('/',async (req,res) =>{
+router.get('/',auth,async (req,res) =>{
     try {
         const books = await Book.find();
         res.status(200).json({books});
@@ -41,6 +41,19 @@ router.post('/book',
         res.status(500).send("Server Error");
         
     }
+})
+
+router.delete('/:id', async (req,res) =>{
+    try {
+        await Book.findByIdAndRemove({_id:req.params.id})
+
+        res.status(200).json({msg: "successfully deleted"})
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send("Server Error");
+        
+    }
+    
 })
 
 module.exports = router;

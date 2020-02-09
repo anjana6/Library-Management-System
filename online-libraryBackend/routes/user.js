@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require("../model/User");
 const {check,validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 router.post('/singUp',
     [
@@ -56,7 +58,18 @@ router.post('/singIn',[
         if(!isMatchPassword){
             return res.status(400).json({error:"Your password is not Match"});
         }
-        res.status(200).json("success");
+
+        jwt.sign(
+            {id: user._id},
+            config.get("jwtSecret"),
+            {expiresIn: 360000},
+            (err,token) =>{
+                if(err) throw err;
+                res.json({token});
+            }
+        );
+
+        // res.status(200).json("success");
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
