@@ -17,7 +17,7 @@ router.get('/',auth,async (req,res) =>{
 
 })
 // add the book into database
-router.post('/book',
+router.post('/add',
     [
         check("bookId","BookId is required").notEmpty(),
         check("title","Book Name is required").notEmpty(),
@@ -41,9 +41,24 @@ router.post('/book',
         res.status(500).send("Server Error");
         
     }
-})
+});
 
-router.delete('/:id', async (req,res) =>{
+
+router.post('/searchAuther',async (req,res) =>{
+    // console.log(req.body);
+    const autherName = new RegExp(req.body.AutherName,"gi");
+    console.log(autherName);
+    try {
+        const authernames = await Book.find({autherName});
+        
+        return res.json({authernames});
+    } catch (err) {
+        console.error(err.message);
+        
+    }
+});
+// delete the books
+router.delete('/delete/:id', async (req,res) =>{
     try {
         await Book.findByIdAndRemove({_id:req.params.id})
 
@@ -51,7 +66,6 @@ router.delete('/:id', async (req,res) =>{
     } catch (err) {
         console.log(err.message);
         res.status(500).send("Server Error");
-        
     }
     
 })

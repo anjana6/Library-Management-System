@@ -12,8 +12,8 @@ const app = express();
 connectDB();
 
 app.use(express.json({extended:false}));
-app.use("/",userRouter);
-app.use("/",bookRouter);
+app.use("/api/user",userRouter);
+app.use("/api/book",bookRouter);
 app.use("/",selectingRouter);
 app.use("/",profileRouter);
 
