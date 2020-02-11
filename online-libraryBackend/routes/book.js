@@ -15,7 +15,7 @@ router.get('/',auth,async (req,res) =>{
     }
   
 
-})
+});
 // add the book into database
 router.post('/add',
     [
@@ -43,20 +43,46 @@ router.post('/add',
     }
 });
 
-
+// searching books using autherName
 router.post('/searchAuther',async (req,res) =>{
     // console.log(req.body);
     const autherName = new RegExp(req.body.AutherName,"gi");
     console.log(autherName);
     try {
-        const authernames = await Book.find({autherName});
+        const books = await Book.find({autherName});
         
-        return res.json({authernames});
+        res.status(200).json({books});
     } catch (err) {
         console.error(err.message);
         
     }
 });
+// search book using bookId
+router.post('/searchBookId', async (req,res) =>{
+    try {
+        const book = await Book.findOne({bookId:req.body.bookId});
+
+        res.status(200).json({book});
+    } catch (err) {
+        console.error(err.message);
+        
+    }
+});
+
+router.put('/update', async (req,res) =>{
+    try {
+        console.log("hiii");
+        await Book.findOneAndUpdate({bookId:req.body.bookId},
+            { $set: req.body },
+          { new: true });
+
+          res.status(200).json({msg: "Update is successfull"})
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+        
+    }
+})
 // delete the books
 router.delete('/delete/:id', async (req,res) =>{
     try {
