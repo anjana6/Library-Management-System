@@ -2,7 +2,17 @@
   background:url('./Images/home.jpg') no-repeat center center/cover;
   height: 100vh;
   width: 100%;
+  padding-top: 10%;
 }
+.card-admin{
+  left: 20%;
+}
+.card-user{
+  left:  20%;
+}
+/* .img-content{
+  margin-top: 30%;
+} */
 
 /* .App-logo {
   height: 40vmin;
