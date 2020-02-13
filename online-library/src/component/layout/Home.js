@@ -15,7 +15,7 @@ const Home = () =>{
                 <Card className="text-center card-admin" style={{ width: '18rem' }}>
                     <Card.Body>
                         <Card.Title>Adimn</Card.Title>
-                        <Card.Link href="#"><Image src={admin} style={{height:"60%",width:"60%"}}/></Card.Link>    
+                        <Card.Link href="/admin/login"><Image src={admin} style={{height:"60%",width:"60%"}}/></Card.Link>    
                     </Card.Body>
                 </Card>
                 </Col>
@@ -23,7 +23,7 @@ const Home = () =>{
                 <Card className="text-center card-user " style={{ width: '18rem' }}>
                     <Card.Body>
                         <Card.Title>User</Card.Title>
-                        <Card.Link href="/login"><Image src={users} style={{height:"60%",width:"60%"}}/></Card.Link>    
+                        <Card.Link href="/user/login"><Image src={users} style={{height:"60%",width:"60%"}}/></Card.Link>    
                     </Card.Body>
                 </Card>
                 </Col>
