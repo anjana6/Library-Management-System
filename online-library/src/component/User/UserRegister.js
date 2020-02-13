@@ -22,7 +22,7 @@ const  UserRegister = () => {
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail">
+                                <Form.Group as={Col} controlId="formGridEmail" >
                                 <Form.Label>Student No</Form.Label>
                                 <Form.Control type="text" placeholder="Student No" />
                                 </Form.Group>
@@ -33,7 +33,7 @@ const  UserRegister = () => {
                                 </Form.Group>
                             </Form.Row>
 
-                            <Form.Group controlId="formGridAddress1">
+                            <Form.Group controlId="formGridAddress1" className="w-25">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="email" placeholder="Email" />
                             </Form.Group>
