@@ -11,7 +11,7 @@ const  AdminLogin = () => {
                     <Col xs={6}>
                         <Image src={admin} style={{height:"60%",width:"60%"}}/>
                     </Col>
-                    <Col xs={6} className="login">
+                    <Col xs={6} className="adminLoginForm">
                         <LoginForm/>
                     </Col>
                 </Row>

@@ -11,8 +11,12 @@
   left:  20%;
 }
 
-.login{
+.userLoginForm,.adminLoginForm{
   padding: 10%;
+}
+.userRegisterForm{
+  margin-top: 3%;
+  margin-left: 30%;
 }
 /* .img-content{
   margin-top: 30%;

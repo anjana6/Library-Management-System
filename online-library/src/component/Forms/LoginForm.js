@@ -1,5 +1,7 @@
 import React from 'react';
-import {Form,Card,Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Form,Card,Button,Col,Row} from 'react-bootstrap';
+
 
 const LoginForm = () =>{
     return (
@@ -18,11 +20,20 @@ const LoginForm = () =>{
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Password" />
                             </Form.Group>
-                            <Button variant="primary" type="submit">
-                                Submit
-                            </Button>
+                            <Row>
+                                <Col xs={6}>
+                                    <Button variant="primary" type="submit">
+                                        Submit
+                                    </Button>
+                                </Col>
+                                <Col xs={6} className="login">
+                                    <Link to='/user/register'>Register Now</Link>
+                                </Col>
+                            </Row>
+                            
                         </Form>
                     </Card.Text>
+                    
                    
                 </Card.Body>
             </Card>

@@ -12,7 +12,7 @@ const UserLogin = () =>{
                     <Col xs={6}>
                         <Image src={users} style={{height:"60%",width:"60%"}}/>
                     </Col>
-                    <Col xs={6} className="login">
+                    <Col xs={6} className="userLoginForm">
                         <LoginForm/>
                     </Col>
                 </Row>
