@@ -7,6 +7,7 @@ import UserLogin from './Component/User/UserLogin';
 import Home from './Component/Layout/Home';
 import AdminLogin from './Component/Admin/AdminLogin';
 import UserRegister from './Component/User/UserRegister';
+import AddBooks from './Component/Book/AddBooks';
 
 const App = () => {
     return (
@@ -17,6 +18,8 @@ const App = () => {
                     <Route exact path='/user/login' component={UserLogin}/>
                     <Route exact path='/admin/login'component={AdminLogin}/>
                     <Route exact path='/user/register' component={UserRegister}/>
+                    {/* <Route exact path='/admin/register' component={AdminRegister}/> */}
+                    <Route exact path='/book/addbook' component={AddBooks}/>
                 </Switch>
             </Fragment>
         </Router>
