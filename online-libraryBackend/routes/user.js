@@ -22,7 +22,7 @@ router.post('/singUp',
         const userExist = await User.findOne({email:req.body.email});
         if(userExist){
 
-            return res.status(400).json({error: "email is already exist"});
+            return res.status(400).json({errors:[{msg:"email is already exist"} ]});
         }
 
 

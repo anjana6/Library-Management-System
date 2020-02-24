@@ -9,11 +9,11 @@ const app = express();
 
 
 
-// const userRouter = require("./routes/user");
-// const adminRouter = require("./routes/admin");
-// const bookRouter = require("./routes/book");
-// const selectingRouter = require("./routes/selectingBook");
-// const profileRouter = require("./routes/profile");
+const userRouter = require("./routes/user");
+const adminRouter = require("./routes/admin");
+const bookRouter = require("./routes/book");
+const selectingRouter = require("./routes/selectingBook");
+const profileRouter = require("./routes/profile");
 
 
 
@@ -26,13 +26,13 @@ connectDB();
 app.use(express.json({extended:false}));
 app.use(cors());
 
-// app.use("/api/user",userRouter);
-// app.use("/api/book",bookRouter);
-// app.use("/api/admin",adminRouter);
-// app.use("/",selectingRouter);
-// app.use("/",profileRouter);
+app.use("/api/user",userRouter);
+app.use("/api/book",bookRouter);
+app.use("/api/admin",adminRouter);
+app.use("/",selectingRouter);
+app.use("/",profileRouter);
 
-app.use("/api/user",require('./routes/user'));
+// app.use("/api/user",require('./routes/user'));
 
 
 const port = process.env.PORT || 5000;

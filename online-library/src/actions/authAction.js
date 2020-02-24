@@ -21,6 +21,8 @@ export const userRegister = ({Fname,Lname,studentNo,nic,email,telNo,mobileNo,pas
             payload:res.data
         })
     } catch (err) {
+        const errors = err.response.data.errors
+        console.log(errors);
         // const errors = err.response.data.errors;
         // console.log(errors);
 
