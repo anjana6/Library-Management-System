@@ -9,7 +9,6 @@ const LoginForm = () =>{
             <Card style={{ width: '30rem' }}>
                 <Card.Body>
                     <Card.Title className="text-center">Login</Card.Title>
-                    <Card.Text>
                         <Form>
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Email address</Form.Label>
@@ -29,12 +28,8 @@ const LoginForm = () =>{
                                 <Col xs={6} className="login">
                                     <Link to='/user/register'>Register Now</Link>
                                 </Col>
-                            </Row>
-                            
+                            </Row>    
                         </Form>
-                    </Card.Text>
-                    
-                   
                 </Card.Body>
             </Card>
             

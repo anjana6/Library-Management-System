@@ -1,11 +1,13 @@
 import React,{Fragment,useState} from 'react';
-// import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import {userRegister} from '../../actions/authAction';
+import {connect} from 'react-redux';
 
 
 import {Form,Col,Button,Card } from 'react-bootstrap';
 
-const  UserRegister = () => {
+const  UserRegister = ({userRegister}) => {
     const [state, setstate] = useState({Fname:'',Lname:'',studentNo:'',nic:'',email:'',telNo:'',mobileNo:'',password:'',comPassword:''});
+    const {Fname,Lname,studentNo,nic,email,telNo,mobileNo,password,comPassword} = state;
 
     const onChange = (e) => {
        setstate({...state,[e.target.name] : e.target.value}) ;
@@ -14,12 +16,21 @@ const  UserRegister = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(state);
+        if(password !== comPassword){
+            console.log("password wrong");
+
+        }else{
+            console.log("hi")
+            userRegister({Fname,Lname,studentNo,nic,email,telNo,mobileNo,password});
+            
+        }
+        
+        
 
 
     }
 
-    const {Fname,Lname,studentNo,nic,email,telNo,mobileNo,password,comPassword} = state;
+    
     
 
     return (
@@ -91,4 +102,4 @@ const  UserRegister = () => {
     )
 }
 
-export default UserRegister;
+export default connect(null,{userRegister})(UserRegister);

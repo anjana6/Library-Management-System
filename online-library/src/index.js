@@ -1,23 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
-import thunk from 'redux-thunk';
-import {createStore,applyMiddleware} from 'redux'; 
-import {composeWithDevTools} from 'redux-devtools-extension';
-
+import configureStore from './configureStore';
 import App from './App';
-import Reducer from './reducers';
-
-
-const initialState = {};
-const middleware = [thunk]
-
-const store = createStore(
-    Reducer,initialState,composeWithDevTools(applyMiddleware(...middleware))
-);
 
 ReactDOM.render(
-    <Provider store={store}>
+    <Provider store={configureStore}>
          <App/>
     </Provider>
    ,
