@@ -1,73 +1,93 @@
-import React from 'react';
+import React,{Fragment,useState} from 'react';
+// import { MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+
 
 import {Form,Col,Button,Card } from 'react-bootstrap';
 
 const  UserRegister = () => {
+    const [state, setstate] = useState({Fname:'',Lname:'',studentNo:'',nic:'',email:'',telNo:'',mobileNo:'',password:'',comPassword:''});
+
+    const onChange = (e) => {
+       setstate({...state,[e.target.name] : e.target.value}) ;
+    //    console.log(state);
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log(state);
+
+
+    }
+
+    const {Fname,Lname,studentNo,nic,email,telNo,mobileNo,password,comPassword} = state;
+    
+
     return (
-        <div>
-            <Card className="userRegisterForm" style={{ width: '40rem', height:'40rem'}}>
+        <Fragment>
+            { <Card className="userRegisterForm" style={{ width: '40rem', height:'40rem'}}>
                 <Card.Body>
                     <Card.Title className="text-center">Register</Card.Title>
-                    <Card.Text>
-                        <Form>
+                    
+                        <Form onSubmit={onSubmit}>
                             <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail">
+                                <Form.Group as={Col}>
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="First Name" />
+                                <Form.Control type="text" placeholder="First Name" name="Fname" value={Fname} onChange={onChange} />
                                 </Form.Group>
 
-                                <Form.Group as={Col} controlId="formGridPassword">
+                                <Form.Group as={Col}>
                                 <Form.Label>Last Name</Form.Label>
-                                <Form.Control type="text" placeholder="Last Name" />
+                                <Form.Control type="text" placeholder="Last Name" name="Lname" value={Lname} onChange={onChange}/>
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail" >
+                                <Form.Group as={Col}>
                                 <Form.Label>Student No</Form.Label>
-                                <Form.Control type="text" placeholder="Student No" />
+                                <Form.Control type="text" placeholder="Student No" name="studentNo" value={studentNo} onChange={onChange} />
                                 </Form.Group>
 
-                                <Form.Group as={Col} controlId="formGridPassword">
+                                <Form.Group as={Col}>
                                 <Form.Label>NIC</Form.Label>
-                                <Form.Control type="text" placeholder="NIC" />
+                                <Form.Control type="text" placeholder="NIC" name="nic" value={nic} onChange={onChange}/>
                                 </Form.Group>
                             </Form.Row>
 
-                            <Form.Group controlId="formGridAddress1" className="w-25">
+                            <Form.Group>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Email" />
+                                <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={onChange}/>
                             </Form.Group>
                             <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail">
+                                <Form.Group as={Col} >
                                 <Form.Label>Tel No:</Form.Label>
-                                <Form.Control type="number" placeholder="Tel" />
+                                <Form.Control type="text" placeholder="Tel" name="telNo" value={telNo} onChange={onChange} />
                                 </Form.Group>
 
-                                <Form.Group as={Col} controlId="formGridPassword">
+                                <Form.Group as={Col}>
                                 <Form.Label>Mobile No:</Form.Label>
-                                <Form.Control type="number" placeholder="Mobile" />
+                                <Form.Control type="text" placeholder="Mobile" name="mobileNo" value={mobileNo} onChange={onChange}/>
                                 </Form.Group>
                             </Form.Row>
 
                             <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail">
+                                <Form.Group as={Col}>
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" />
+                                <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={onChange} />
                                 </Form.Group>
 
-                                <Form.Group as={Col} controlId="formGridPassword">
+                                <Form.Group as={Col}>
                                 <Form.Label>Comform Password</Form.Label>
-                                <Form.Control type="password" placeholder="Comform Password" />
+                                <Form.Control type="password" placeholder="Comform Password" name="comPassword" value={comPassword} onChange={onChange}/>
                                 </Form.Group>
                             </Form.Row>
                             <Button className="mt-5" variant="primary" type="submit" block>
                                 Submit
                             </Button>
                         </Form>
-                    </Card.Text>
+                    
                 </Card.Body>
-            </Card>
-        </div>
+            </Card> }
+        
+        </Fragment>
     )
 }
 

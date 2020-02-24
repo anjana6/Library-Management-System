@@ -3,6 +3,8 @@ import React from 'react';
 import {Form,Col,Button,Card } from 'react-bootstrap';
 
 const  UserRegister = () => {
+     
+
     return (
         <div>
             <Card className="userRegisterForm" style={{ width: '40rem', height:'40rem'}}>
