@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'semantic-ui-css/semantic.min.css';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ import Home from './Component/Layout/Home';
 import AdminLogin from './Component/Admin/AdminLogin';
 import UserRegister from './Component/User/UserRegister';
 import AddBooks from './Component/Book/AddBooks';
+import ViewBooks from './Component/Book/ViewBooks';
 
 const App = () => {
     return (
@@ -20,6 +22,7 @@ const App = () => {
                     <Route exact path='/user/register' component={UserRegister}/>
                     {/* <Route exact path='/admin/register' component={AdminRegister}/> */}
                     <Route exact path='/book/addbook' component={AddBooks}/>
+                    <Route exact path='/book/viewbooks' component={ViewBooks}/>
                 </Switch>
             </Fragment>
         </Router>

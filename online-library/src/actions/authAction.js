@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USERREGISTER_SUCCESS, USERREGISTER_FAIL,USERLOGIN_SUCCESS,USERLOGIN_FAIL } from './Type';
+import { USERREGISTER_SUCCESS, USERREGISTER_FAIL,USERLOGIN_SUCCESS,USERLOGIN_FAIL,ADMINLOGIN_SUCCESS,ADMINLOGIN_FAIL } from './Type';
 import { endPoint } from '../config';
 
 export const userRegister = ({
@@ -47,8 +47,7 @@ export const userRegister = ({
   }
 };
 
-export const userlogin = ({ email, password }) => async dispatch => {
-    console.log('hii')
+export const userLogin = ({ email, password }) => async dispatch => {
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -72,3 +71,29 @@ export const userlogin = ({ email, password }) => async dispatch => {
     });
   }
 };
+
+export const adminLogin = ({ email, password }) => async dispatch => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    const body = JSON.stringify({ email, password });
+  
+    try {
+      const res = await axios.post(`${endPoint}/api/admin/singIn`,body,config);
+      console.log(res.data);
+      dispatch({
+        type: ADMINLOGIN_SUCCESS,
+        payload: res.data
+      });
+    } catch (err) {
+      const errors = err.response.data.errors;
+      console.log(errors);
+  
+      dispatch({
+        type: ADMINLOGIN_FAIL
+      });
+    }
+  };
+  

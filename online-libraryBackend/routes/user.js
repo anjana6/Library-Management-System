@@ -33,7 +33,7 @@ router.post('/singUp',
         user.password = await bcrypt.hash(req.body.password,salt);
 
         await user.save();
-        res.json("success");
+        res.json("true");
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");

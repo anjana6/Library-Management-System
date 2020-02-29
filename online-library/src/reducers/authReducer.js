@@ -12,10 +12,10 @@ export default (state = initialState,action) => {
     switch(type){
         case USERREGISTER_SUCCESS:
             
-            return { ...state,token:null,isRegister:true,isAuthenticated:true,loading:false};
+            return { ...state,token:null,isRegister:payload,isAuthenticated:true,loading:false};
         case USERLOGIN_SUCCESS:
             localStorage.setItem('token',payload.token);
-            return{ ...state,token:payload.token,isRegister:true,isAuthenticated:true,loading:false}
+            return{ ...state,token:payload.token,isAuthenticated:true,loading:false}
 
         case USERREGISTER_FAIL:
             

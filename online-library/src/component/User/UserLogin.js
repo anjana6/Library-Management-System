@@ -1,13 +1,13 @@
 import React,{useState} from 'react'
 import {Col,Row,Image,Container,Form,Card,Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import {userlogin} from '../../actions/authAction';
+import {userLogin} from '../../actions/authAction';
 
 import users from '../../Images/users.png'
 import { connect } from 'react-redux';
 
 
-const UserLogin = ({userlogin}) =>{
+const UserLogin = ({userLogin}) =>{
     const [state, setState] = useState({email:'',password:''});
 
     const {email,password} = state;
@@ -18,7 +18,7 @@ const UserLogin = ({userlogin}) =>{
 
     const onSubmit = (e) => {
         e.preventDefault();
-        userlogin({email,password});
+        userLogin({email,password});
         console.log(state);
     }
     return (
@@ -44,9 +44,9 @@ const UserLogin = ({userlogin}) =>{
                                         </Form.Group>
                                         <Row>
                                             <Col xs={6}>
-                                                <Button variant="primary" type="submit">
-                                                    Submit
-                                                </Button>
+                                                
+                                                <Link to='/book/viewbooks'><Button variant="primary" type="submit">Submit</Button></Link>
+                                                
                                             </Col>
                                             <Col xs={6} className="login">
                                                 <Link to='/user/register'>Register Now</Link>
@@ -62,4 +62,4 @@ const UserLogin = ({userlogin}) =>{
     )
 }
 
-export default connect(null,{userlogin})(UserLogin);
+export default connect(null,{userLogin})(UserLogin);

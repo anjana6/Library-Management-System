@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 
 
 import {Form,Col,Button,Card } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
-const  UserRegister = ({userRegister}) => {
+const  UserRegister = ({userRegister,isRegister}) => {
     const [state, setstate] = useState({Fname:'',Lname:'',studentNo:'',nic:'',email:'',telNo:'',mobileNo:'',password:'',comPassword:''});
     const {Fname,Lname,studentNo,nic,email,telNo,mobileNo,password,comPassword} = state;
 
@@ -20,7 +21,6 @@ const  UserRegister = ({userRegister}) => {
             console.log("password wrong");
 
         }else{
-            console.log("hi")
             userRegister({Fname,Lname,studentNo,nic,email,telNo,mobileNo,password});
             
         }
@@ -28,6 +28,10 @@ const  UserRegister = ({userRegister}) => {
         
 
 
+    }
+
+    if (isRegister) {
+        return <Redirect to='/user/login'/>
     }
 
     
@@ -102,4 +106,8 @@ const  UserRegister = ({userRegister}) => {
     )
 }
 
-export default connect(null,{userRegister})(UserRegister);
+const mapStateToProps = state => ({
+     isRegister : state.auth.isRegister
+})
+
+export default connect(mapStateToProps,{userRegister})(UserRegister);
