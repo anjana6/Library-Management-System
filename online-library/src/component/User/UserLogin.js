@@ -1,13 +1,13 @@
 import React,{useState} from 'react'
 import {Col,Row,Image,Container,Form,Card,Button} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {userLogin} from '../../actions/authAction';
 
 import users from '../../Images/users.png'
 import { connect } from 'react-redux';
 
 
-const UserLogin = ({userLogin}) =>{
+const UserLogin = ({userLogin,isAuthenticated}) =>{
     const [state, setState] = useState({email:'',password:''});
 
     const {email,password} = state;
@@ -20,6 +20,10 @@ const UserLogin = ({userLogin}) =>{
         e.preventDefault();
         userLogin({email,password});
         console.log(state);
+    }
+
+    if(isAuthenticated){
+        return <Redirect to="/book/viewbooks"/>
     }
     return (
         <div>
@@ -45,7 +49,7 @@ const UserLogin = ({userLogin}) =>{
                                         <Row>
                                             <Col xs={6}>
                                                 
-                                                <Link to='/book/viewbooks'><Button variant="primary" type="submit">Submit</Button></Link>
+                                                <Button variant="primary" type="submit">Submit</Button>
                                                 
                                             </Col>
                                             <Col xs={6} className="login">
@@ -62,4 +66,8 @@ const UserLogin = ({userLogin}) =>{
     )
 }
 
-export default connect(null,{userLogin})(UserLogin);
+const mapStateToProps = state => ({
+    isAuthenticated:state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps,{userLogin})(UserLogin);
