@@ -3,36 +3,38 @@ import { getBooks } from '../../../../actions/booksAction';
 import { connect } from 'react-redux';
 import ViewItem from './ViewItem';
 
-import {Container,Row,Col} from 'react-bootstrap';
+import {Container} from 'react-bootstrap';
 
 const  ViewBooks = ({getBooks,book}) => {
      useEffect(() => {
         getBooks();
     }, [getBooks]);
-// if(book.books)
+if(book.books)
    
-//     {book.books.map(book => {
-//         return (
-//             console.log(book.title)
-//         )
-//     })}
+    {book.books.map(book => {
+        return (
+            console.log(book.title)
+        )
+    })}
     
 
     return (
-        
+        // <div><ViewItem/></div>
         <Fragment >
             <Container>
-                <Row>
                     {book.books && book.books.map(book =>{
-                    return (
-                        <Col lg={6}>
-                            <ViewItem key={book._id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
-                        </Col>    
-                    )
-                })}
-                </Row>
+                return (
+                    <ViewItem key={book._id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
+                )
+            })}
             </Container>
-        </Fragment>
+           
+            
+         </Fragment>
+       
+       
+            
+
     )
 }
 const mapStateToProps = state => ({

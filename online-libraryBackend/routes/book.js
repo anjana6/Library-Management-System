@@ -46,7 +46,7 @@ router.post('/add',
 // searching books using autherName
 router.post('/searchAuther',async (req,res) =>{
     // console.log(req.body);
-    const autherName = new RegExp(req.body.AutherName,"gi");
+    const autherName = new RegExp(req.body.autherName,"gi");
     console.log(autherName);
     try {
         const books = await Book.find({autherName});
