@@ -11,7 +11,7 @@ const ViewItem = ({title,auther,bookId,description}) => {
                   <Row>
                     <Col xs={9}>
                     <Card.Body>
-    <Card.Title>BookId : {bookId}</Card.Title>
+                      <Card.Title>BookId : {bookId}</Card.Title>
                         <Card.Text>AutherName : {auther}</Card.Text>
                         <Card.Text>Description : {description}</Card.Text>
                       </Card.Body>

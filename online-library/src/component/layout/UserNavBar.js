@@ -40,7 +40,7 @@ const  UserNavBar = () => {
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="/book/viewbooks">ViewBooks</Nav.Link>
+      <Nav.Link href="/book/userviewbooks">ViewBooks</Nav.Link>
     </Nav>
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={e => getAuther(e.target.value)} />

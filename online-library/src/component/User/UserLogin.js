@@ -23,7 +23,7 @@ const UserLogin = ({userLogin,isAuthenticated}) =>{
     }
 
     if(isAuthenticated){
-        return <Redirect to="/book/viewbooks"/>
+        return <Redirect to="/book/userviewbooks"/>
     }
     return (
         <div>

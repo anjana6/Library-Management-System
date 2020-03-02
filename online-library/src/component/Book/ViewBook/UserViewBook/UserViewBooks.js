@@ -5,7 +5,7 @@ import ViewItem from './ViewItem';
 
 import {Container,Row,Col} from 'react-bootstrap';
 
-const  ViewBooks = ({getBooks,book}) => {
+const  UserViewBooks = ({getBooks,book}) => {
      useEffect(() => {
         getBooks();
     }, [getBooks]);
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
     book: state.book
 })
 
-export default connect(mapStateToProps,{getBooks})(ViewBooks);
+export default connect(mapStateToProps,{getBooks})(UserViewBooks);

@@ -9,8 +9,10 @@ import Home from './Component/Layout/Home';
 import AdminLogin from './Component/Admin/AdminLogin';
 import UserRegister from './Component/User/UserRegister';
 import AddBooks from './Component/Book/AddBook/AddBooks';
-import ViewBooks from './Component/Book/ViewBook/UserViewBook/ViewBooks';
+import UserViewBooks from './Component/Book/ViewBook/UserViewBook/UserViewBooks';
 import UserNavbar from './Component/Layout/UserNavBar';
+import AdminRegister from './Component/Admin/AddminRegister';
+import AdminViewBooks from './Component/Book/ViewBook/AdminViewBook/AdminViewBooks';
 
 const App = () => {
     return (
@@ -22,9 +24,10 @@ const App = () => {
                     <Route exact path='/user/login' component={UserLogin}/>
                     <Route exact path='/admin/login'component={AdminLogin}/>
                     <Route exact path='/user/register' component={UserRegister}/>
-                    {/* <Route exact path='/admin/register' component={AdminRegister}/> */}
+                    <Route exact path='/admin/register' component={AdminRegister}/>
                     <Route exact path='/book/addbook' component={AddBooks}/>
-                    <Route exact path='/book/viewbooks' component={ViewBooks}/>
+                    <Route exact path='/book/userviewbooks' component={UserViewBooks}/>
+                    <Route exact path='/book/adminviewbooks' component={AdminViewBooks}/>
                 </Switch>
             </Fragment>
         </Router>

@@ -3,9 +3,9 @@ import { getBooks } from '../../../../actions/booksAction';
 import { connect } from 'react-redux';
 import ViewItem from './ViewItem';
 
-import {Container} from 'react-bootstrap';
+import {Container,Row,Col} from 'react-bootstrap';
 
-const  ViewBooks = ({getBooks,book}) => {
+const  AdminViewBooks = ({getBooks,book}) => {
      useEffect(() => {
         getBooks();
     }, [getBooks]);
@@ -22,11 +22,16 @@ if(book.books)
         // <div><ViewItem/></div>
         <Fragment >
             <Container>
-                    {book.books && book.books.map(book =>{
+                <Row>
+                {book.books && book.books.map(book =>{
                 return (
-                    <ViewItem key={book._id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
+                    <Col lg={6}>
+                        <ViewItem key={book._id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
+                    </Col>
                 )
             })}
+                </Row>
+                   
             </Container>
            
             
@@ -41,4 +46,4 @@ const mapStateToProps = state => ({
     book: state.book
 })
 
-export default connect(mapStateToProps,{getBooks})(ViewBooks);
+export default connect(mapStateToProps,{getBooks})(AdminViewBooks);
