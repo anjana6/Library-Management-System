@@ -3,8 +3,9 @@ import {Container,Row,Col,Image,Card,Form,Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import admin from '../../Images/admin.png';
 import {adminLogin} from '../../actions/authAction';
+import {Redirect} from 'react-router-dom';
 
-const  AdminLogin = ({adminLogin}) => {
+const  AdminLogin = ({adminLogin,isAuthenticated}) => {
 
     const [state, setState] = useState({email:'',password:''});
 
@@ -19,6 +20,11 @@ const  AdminLogin = ({adminLogin}) => {
         adminLogin({email,password});
         console.log(state);
     }
+    if(isAuthenticated){
+        return <Redirect to='/book/adminviewbooks'/>
+        
+    }
+
     return (
         <div>
              <Container>
@@ -57,4 +63,8 @@ const  AdminLogin = ({adminLogin}) => {
     )
 }
 
-export default connect(null,{adminLogin})(AdminLogin);
+const mapStateToProps = state =>({
+    isAuthenticated : state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps,{adminLogin})(AdminLogin);

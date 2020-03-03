@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import {endPoint} from '../../config';
-import {Navbar,Nav,Form,FormControl,Button} from 'react-bootstrap';
+import {Navbar,Nav,Form,FormControl} from 'react-bootstrap';
 
 const  UserNavBar = () => {
     const [autherName,setAutherName] = useState("");

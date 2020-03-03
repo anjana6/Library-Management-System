@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
 
-import {Form,Col,Button,Card,Row,InputGroup } from 'react-bootstrap';
+import {Form,Col,Button,Card,Row,InputGroup, Container } from 'react-bootstrap';
+import { addBooks } from '../../../actions/booksAction';
+import {connect} from 'react-redux';
 
 
 
-const  AddBooks = () => {
+const  AddBooks = ({addBooks}) => {
 
     const [state, setState] = useState({bookId:'',title:'',autherName:'',quentity:'',cost:'',description:'',numberOfBooks:''});
 
@@ -18,10 +20,12 @@ const  AddBooks = () => {
         e.preventDefault();
         
         console.log(state);
+        addBooks(state);
     }
     return (
         <div>
-            <Card className="userRegisterForm" style={{ width: '50rem', height:'40rem'}}>
+            <Container>
+            <Card className="m-5">
                 <Card.Body>
                     <Card.Title className="text-center">ADD BOOK</Card.Title>
                         <Form onSubmit={onSubmit}>
@@ -47,17 +51,17 @@ const  AddBooks = () => {
                             <Form.Row>
                                 <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>No OF Books</Form.Label>
-                                <Form.Control type="number" placeholder="Number of Books" name="numberOfBooks" value={numberOfBooks} onChange={onChange}/>
+                                <Form.Control type="text" placeholder="Number of Books" name="numberOfBooks" value={numberOfBooks} onChange={onChange}/>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formGridPassword">
                                 <Form.Label>Quentity</Form.Label>
-                                <Form.Control type="number" placeholder="Quentity" name="quentity" value={quentity} onChange={onChange} />
+                                <Form.Control type="text" placeholder="Quentity" name="quentity" value={quentity} onChange={onChange} />
                                 </Form.Group>
                             </Form.Row>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Label>Description</Form.Label>
-                                <Form.Control as="textarea" rows="3" name="description" value={description}/>
+                                <Form.Control as="textarea" rows="3" name="description" value={description} onChange={onChange}/>
                             </Form.Group>
                                 <Form.Group as={Row} controlId="formPlaintextPassword" >
                                 <Form.Label column sm="2">Book Price</Form.Label>
@@ -76,8 +80,10 @@ const  AddBooks = () => {
                         </Form>
                 </Card.Body>
             </Card>
-        </div>
+            </Container>
+            </div>
+       
     )
 }
 
-export default AddBooks;
+export default connect(null,{addBooks})(AddBooks);

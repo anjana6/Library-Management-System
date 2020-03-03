@@ -9,6 +9,8 @@ const  UserViewBooks = ({getBooks,book}) => {
      useEffect(() => {
         getBooks();
     }, [getBooks]);
+
+    console.log(book);
 // if(book.books)
    
 //     {book.books.map(book => {
@@ -25,8 +27,8 @@ const  UserViewBooks = ({getBooks,book}) => {
                 <Row>
                     {book.books && book.books.map(book =>{
                     return (
-                        <Col lg={6}>
-                            <ViewItem key={book._id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
+                        <Col lg={6} key={book._id}>
+                            <ViewItem  title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
                         </Col>    
                     )
                 })}
@@ -36,7 +38,7 @@ const  UserViewBooks = ({getBooks,book}) => {
     )
 }
 const mapStateToProps = state => ({
-    book: state.book
+    book: state.book.allBooks
 })
 
 export default connect(mapStateToProps,{getBooks})(UserViewBooks);

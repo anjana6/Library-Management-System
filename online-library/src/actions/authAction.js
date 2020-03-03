@@ -32,7 +32,7 @@ export const userRegister = ({
 
   try {
     const res = await axios.post(`${endPoint}/api/user/singUp`, body, config);
-    console.log(res);
+    // console.log(res);
 
     dispatch({
       type: USERREGISTER_SUCCESS,
@@ -57,7 +57,7 @@ export const userLogin = ({ email, password }) => async dispatch => {
 
   try {
     const res = await axios.post(`${endPoint}/api/user/singIn`,body,config);
-    console.log(res.data);
+    // console.log(res.data);
     dispatch({
       type: USERLOGIN_SUCCESS,
       payload: res.data
@@ -73,16 +73,18 @@ export const userLogin = ({ email, password }) => async dispatch => {
 };
 
 export const adminLogin = ({ email, password }) => async dispatch => {
+  // console.log({ email, password });
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
     const body = JSON.stringify({ email, password });
+    console.log(body);
   
     try {
       const res = await axios.post(`${endPoint}/api/admin/singIn`,body,config);
-      console.log(res.data);
+      // console.log(res.data);
       dispatch({
         type: ADMINLOGIN_SUCCESS,
         payload: res.data

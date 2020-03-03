@@ -2,20 +2,20 @@ import React,{useEffect,Fragment} from 'react'
 import { getBooks } from '../../../../actions/booksAction';
 import { connect } from 'react-redux';
 import ViewItem from './ViewItem';
-
-import {Container,Row,Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Container,Row,Col, Button} from 'react-bootstrap';
 
 const  AdminViewBooks = ({getBooks,book}) => {
      useEffect(() => {
         getBooks();
     }, [getBooks]);
-if(book.books)
+// if(book.books)
    
-    {book.books.map(book => {
-        return (
-            console.log(book.title)
-        )
-    })}
+//     {book.books.map(book => {
+//         return (
+//             console.log(book.title)
+//         )
+//     })}
     
 
     return (
@@ -23,10 +23,13 @@ if(book.books)
         <Fragment >
             <Container>
                 <Row>
+                    <Link to='/book/addbook' className="addbutton"><Button className="m-3"  variant="success">ADD BOOK</Button></Link>
+                </Row>
+                <Row>
                 {book.books && book.books.map(book =>{
                 return (
-                    <Col lg={6}>
-                        <ViewItem key={book._id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
+                    <Col lg={6} key={book._id}>
+                        <ViewItem title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
                     </Col>
                 )
             })}
@@ -43,6 +46,7 @@ if(book.books)
     )
 }
 const mapStateToProps = state => ({
+    
     book: state.book
 })
 
