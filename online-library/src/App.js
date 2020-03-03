@@ -28,6 +28,8 @@ const App = () => {
                     <Route exact path='/book/addbook' component={AddBooks}/>
                     <Route exact path='/book/userviewbooks' component={UserViewBooks}/>
                     <Route exact path='/book/adminviewbooks' component={AdminViewBooks}/>
+                    <Route exact path='/book/edit/:id' component={AddBooks}/>
+                    <Route exact path='/book/delete/:id' component={AddBooks}/>
                 </Switch>
             </Fragment>
         </Router>

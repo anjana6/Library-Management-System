@@ -24,7 +24,7 @@ const  AddBooks = ({addBooks,isBookAdd}) => {
         addBooks(state);
     }
 
-    console.log(isBookAdd);
+    // console.log(isBookAdd);
     if(isBookAdd === 'success'){
         return <Redirect to='/book/adminviewbooks'/>
     }

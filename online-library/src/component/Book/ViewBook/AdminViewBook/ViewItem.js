@@ -3,7 +3,7 @@ import {Card,Row,Col} from 'react-bootstrap';
 import Buttons from './Buttons';
 
 
-const ViewItem = ({title,auther,bookId,description}) => {
+const ViewItem = ({title,auther,bookId,description,id}) => {
     return (
         <Fragment>
                 <Card className="m-3">
@@ -17,7 +17,7 @@ const ViewItem = ({title,auther,bookId,description}) => {
                       </Card.Body>
                     </Col>
                     <Col xs={3}>
-                      <Buttons/>
+                      <Buttons id={id}/>
                     </Col>
                   </Row>
                       

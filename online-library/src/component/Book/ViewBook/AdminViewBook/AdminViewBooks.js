@@ -29,7 +29,7 @@ const  AdminViewBooks = ({getBooks,book}) => {
                 {book.books && book.books.map(book =>{
                 return (
                     <Col lg={6} key={book._id}>
-                        <ViewItem title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
+                        <ViewItem  id={book.id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
                     </Col>
                 )
             })}
