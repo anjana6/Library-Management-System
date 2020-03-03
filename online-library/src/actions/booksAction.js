@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {endPoint} from '../config';
-import {GETALLBOOKS} from './Type';
+import {GETALLBOOKS,ADDBOOK} from './Type';
 
 export const getBooks = () =>async dispatch =>{
     
@@ -29,6 +29,10 @@ export const addBooks = (formdata) => async dispatch => {
     try{
         const res = await axios.post(`${endPoint}/api/book/add`,formdata,config);
         console.log(res.data);
+        dispatch({
+            type:ADDBOOK,
+            payload:res.data
+        })
     }catch(err){
         const errors = err.response.data.errors;
         console.log(errors);

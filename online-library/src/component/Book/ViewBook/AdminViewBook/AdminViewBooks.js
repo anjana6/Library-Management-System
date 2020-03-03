@@ -47,7 +47,7 @@ const  AdminViewBooks = ({getBooks,book}) => {
 }
 const mapStateToProps = state => ({
     
-    book: state.book
+    book: state.book.allBooks
 })
 
 export default connect(mapStateToProps,{getBooks})(AdminViewBooks);

@@ -3,10 +3,11 @@ import React,{useState} from 'react';
 import {Form,Col,Button,Card,Row,InputGroup, Container } from 'react-bootstrap';
 import { addBooks } from '../../../actions/booksAction';
 import {connect} from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 
 
-const  AddBooks = ({addBooks}) => {
+const  AddBooks = ({addBooks,isBookAdd}) => {
 
     const [state, setState] = useState({bookId:'',title:'',autherName:'',quentity:'',cost:'',description:'',numberOfBooks:''});
 
@@ -21,6 +22,11 @@ const  AddBooks = ({addBooks}) => {
         
         console.log(state);
         addBooks(state);
+    }
+
+    console.log(isBookAdd);
+    if(isBookAdd === 'success'){
+        return <Redirect to='/book/adminviewbooks'/>
     }
     return (
         <div>
@@ -86,4 +92,7 @@ const  AddBooks = ({addBooks}) => {
     )
 }
 
-export default connect(null,{addBooks})(AddBooks);
+const mapStateToProps = state => ({
+    isBookAdd : state.book.addbook
+})
+export default connect(mapStateToProps,{addBooks})(AddBooks);

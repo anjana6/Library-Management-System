@@ -1,8 +1,8 @@
-import { GETALLBOOKS } from "../actions/Type";
+import { GETALLBOOKS,ADDBOOK } from "../actions/Type";
 
 const initialState = {
    allBooks : [] ,
-   addbooks : ''
+   addbook : ''
 }
 
 // export default (state = [],action) => {
@@ -21,7 +21,9 @@ export default (state= initialState,action) => {
 
     switch(type){
         case GETALLBOOKS :
-             return({...state,allBooks:payload});
+            return({...state,allBooks:payload});
+        case ADDBOOK:
+            return({...state,addbook:payload});
         default:
             return state;
     }

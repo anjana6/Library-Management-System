@@ -10,7 +10,7 @@ const  UserViewBooks = ({getBooks,book}) => {
         getBooks();
     }, [getBooks]);
 
-    console.log(book);
+    // console.log(book);
 // if(book.books)
    
 //     {book.books.map(book => {
