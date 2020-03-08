@@ -16,6 +16,17 @@ router.get('/',auth,async (req,res) =>{
   
 
 });
+// get book details
+router.get('/details/:id',auth,async(req,res)=>{
+    try {
+        const book = await Book.findById(req.params.id);
+        res.status(200).json(book);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error")
+        
+    }
+})
 // add the book into database
 router.post('/add',
     [
@@ -69,14 +80,24 @@ router.post('/searchBookId', async (req,res) =>{
     }
 });
 
-router.put('/update', async (req,res) =>{
+router.put('/update',auth, async (req,res) =>{
     try {
-        console.log("hiii");
-        await Book.findOneAndUpdate({bookId:req.body.bookId},
-            { $set: req.body },
-          { new: true });
 
-          res.status(200).json({msg: "Update is successfull"})
+        
+            const book = await Book.findOneAndUpdate({_id:req.body.id},
+                { $set: req.body },
+                { new: true }
+                );
+            
+        
+
+        //  book = new Book(
+        //     req.body
+        // );
+
+        // await book.save();
+        res.status(200).json({msg: "Update is successfull"})
+
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");

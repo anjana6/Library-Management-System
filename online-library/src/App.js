@@ -13,6 +13,7 @@ import UserViewBooks from './Component/Book/ViewBook/UserViewBook/UserViewBooks'
 import UserNavbar from './Component/Layout/UserNavBar';
 import AdminRegister from './Component/Admin/AddminRegister';
 import AdminViewBooks from './Component/Book/ViewBook/AdminViewBook/AdminViewBooks';
+import EditBook from './Component/Book/EditBook/EditBook';
 
 const App = () => {
     return (
@@ -28,7 +29,7 @@ const App = () => {
                     <Route exact path='/book/addbook' component={AddBooks}/>
                     <Route exact path='/book/userviewbooks' component={UserViewBooks}/>
                     <Route exact path='/book/adminviewbooks' component={AdminViewBooks}/>
-                    <Route exact path='/book/edit/:id' component={AddBooks}/>
+                    <Route exact path='/book/edit/:id' component={EditBook}/>
                     <Route exact path='/book/delete/:id' component={AddBooks}/>
                 </Switch>
             </Fragment>

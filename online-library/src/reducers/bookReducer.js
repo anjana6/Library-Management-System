@@ -1,8 +1,10 @@
-import { GETALLBOOKS,ADDBOOK } from "../actions/Type";
+import { GETALLBOOKS,ADDBOOK,BOOKDETAILS } from "../actions/Type";
 
 const initialState = {
    allBooks : [] ,
-   addbook : ''
+   addbook : '',
+   loading: true,
+   bookDetails: null
 }
 
 // export default (state = [],action) => {
@@ -24,6 +26,8 @@ export default (state= initialState,action) => {
             return({...state,allBooks:payload});
         case ADDBOOK:
             return({...state,addbook:payload});
+        case BOOKDETAILS:
+            return({...state,bookDetails:payload,loading:false});
         default:
             return state;
     }
