@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {endPoint} from '../config';
-import {GETALLBOOKS,ADDBOOK,BOOKDETAILS} from './Type';
+import {GETALLBOOKS,ADDBOOK,BOOKDETAILS, SEARCHBOOKS} from './Type';
 
 export const getBooks = () =>async dispatch =>{
     
@@ -54,8 +54,9 @@ export const getDetails = (id) =>async dispatch => {
 }
 
 
-export const editBooks = () => async dispatch =>{
-    // console.log({Id});
+export const editBooks = (id,formData) => async dispatch =>{
+    // console.log(id,formData);
+  
 
     const config = {
         headers:{
@@ -63,9 +64,48 @@ export const editBooks = () => async dispatch =>{
         }
     }
 
-    const body = JSON.stringify();
+    const body = JSON.stringify(formData);
+    // console.log(body);
+    try {
+        const res = await axios.put(`${endPoint}/api/book/update/${id}`,body,config);
+    } catch (err) {
+        const errors = err.response.data.errors;
+        console.log(errors);
+    }
 
-    const res = await axios.put(`${endPoint}/api/book/update`,body,config);
+    
 
-    console.log(res.data);
+    
+};
+
+export const searchAuther = (autherN) => async dispatch => {
+    // console.log(autherN);
+    const autherName = autherN.search;
+
+    const body = {
+        autherName
+      };
+
+      const config = {
+        headers:{
+          'Content-Type' : 'application/json'
+        }
+      }
+     // console.log(body);
+
+    try {
+        // setAutherName(value);
+        // console.log(body);
+        const res = await axios.post(`${endPoint}/api/book/searchAuther`,body,config);
+
+        dispatch({
+            type: SEARCHBOOKS,
+            payload: res.data
+        })
+        //console.log(res.data);
+      } catch (err) {
+        const errors = err.response.data.errors;
+        console.log(errors);
+        
+      }
 }

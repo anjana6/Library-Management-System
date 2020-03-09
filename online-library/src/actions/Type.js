@@ -7,3 +7,4 @@ export const ADMINLOGIN_FAIL = 'ADMINLOGIN_FAIL';
 export const GETALLBOOKS = 'GETALLBOOKS';
 export const ADDBOOK = 'ADDBOOK';
 export const BOOKDETAILS = 'BOOKDETAILS';
+export const SEARCHBOOKS = 'SEARCHBOOKS';

@@ -80,22 +80,15 @@ router.post('/searchBookId', async (req,res) =>{
     }
 });
 
-router.put('/update',auth, async (req,res) =>{
+router.put('/update/:id',auth, async (req,res) =>{
     try {
 
         
-            const book = await Book.findOneAndUpdate({_id:req.body.id},
+            const book = await Book.findOneAndUpdate({_id:req.params.id},
                 { $set: req.body },
                 { new: true }
                 );
             
-        
-
-        //  book = new Book(
-        //     req.body
-        // );
-
-        // await book.save();
         res.status(200).json({msg: "Update is successfull"})
 
     } catch (err) {

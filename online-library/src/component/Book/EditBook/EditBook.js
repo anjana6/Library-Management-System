@@ -1,20 +1,17 @@
 import React,{useState,useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
 
 import {Form,Col,Button,Card,Row,InputGroup, Container } from 'react-bootstrap';
-import { addBooks } from '../../../actions/booksAction';
 import {connect} from 'react-redux';
-import {getDetails} from '../../../actions/booksAction';
+import {getDetails,editBooks} from '../../../actions/booksAction';
 // import { Redirect } from 'react-router-dom';
 
 
 
-const  EditBooks = ({match,getDetails,book:{loading,bookDetails}}) => {
+const  EditBooks = ({match,getDetails,editBooks,book:{loading,bookDetails}}) => {
+    const history = useHistory();
     const [state, setState] = useState({bookId:'',title:'',autherName:'',quentity:'',cost:'',description:'',numberOfBooks:''});
-    // const Id = match.params.id;
-
-
-    
-
+    const Id = match.params.id;
     useEffect(() => {
         getDetails(match.params.id);
         
@@ -31,8 +28,6 @@ const  EditBooks = ({match,getDetails,book:{loading,bookDetails}}) => {
             cost: loading || !bookDetails.cost? '': bookDetails.cost,
             description: loading || !bookDetails.description? '' : bookDetails.description,
             numberOfBooks: loading || !bookDetails.numberOfBooks? '' : bookDetails.numberOfBooks
-    
-    
         })
       }
   
@@ -44,9 +39,9 @@ const  EditBooks = ({match,getDetails,book:{loading,bookDetails}}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        editBooks(Id,state);
+        history.push('/book/adminviewbooks');
         
-        console.log(state);
-        addBooks(state);
     }
     return (
         <div>
@@ -117,4 +112,4 @@ const mapStateToProps = state =>({
 })
 
 
-export default connect(mapStateToProps,{getDetails})(EditBooks);
+export default connect(mapStateToProps,{getDetails,editBooks})(EditBooks);
