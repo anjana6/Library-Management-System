@@ -2,6 +2,7 @@ import React,{useEffect,Fragment} from 'react'
 import { getBooks } from '../../../../actions/booksAction';
 import { connect } from 'react-redux';
 import ViewItem from './ViewItem';
+import UserNavBar from '../../../Layout/UserNavBar';
 
 import {Container,Row,Col} from 'react-bootstrap';
 
@@ -23,9 +24,10 @@ const  UserViewBooks = ({getBooks,book}) => {
     return (
         
         <Fragment >
+            <UserNavBar/>
             <Container>
                 <Row>
-                    {book.books && book.books.map(book =>{
+                    {book && book.map(book =>{
                     return (
                         <Col lg={6} key={book._id}>
                             <ViewItem  title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>

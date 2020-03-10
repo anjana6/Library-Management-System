@@ -12,7 +12,6 @@ const  UserRegister = ({userRegister,isRegister}) => {
 
     const onChange = (e) => {
        setstate({...state,[e.target.name] : e.target.value}) ;
-    //    console.log(state);
     }
 
     const onSubmit = (e) => {
@@ -24,18 +23,11 @@ const  UserRegister = ({userRegister,isRegister}) => {
             userRegister({Fname,Lname,studentNo,nic,email,telNo,mobileNo,password});
             
         }
-        
-        
-
-
     }
 
     if (isRegister) {
         return <Redirect to='/user/login'/>
     }
-
-    
-    
 
     return (
         <Fragment>
@@ -101,7 +93,6 @@ const  UserRegister = ({userRegister,isRegister}) => {
                     
                 </Card.Body>
             </Card> }
-        
         </Fragment>
     )
 }

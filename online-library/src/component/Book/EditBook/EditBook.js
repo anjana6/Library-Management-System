@@ -1,10 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
-
 import {Form,Col,Button,Card,Row,InputGroup, Container } from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {getDetails,editBooks} from '../../../actions/booksAction';
-// import { Redirect } from 'react-router-dom';
+
 
 
 

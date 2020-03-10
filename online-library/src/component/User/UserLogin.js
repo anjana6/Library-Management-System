@@ -19,7 +19,6 @@ const UserLogin = ({userLogin,isAuthenticated}) =>{
     const onSubmit = (e) => {
         e.preventDefault();
         userLogin({email,password});
-        console.log(state);
     }
 
     if(isAuthenticated){

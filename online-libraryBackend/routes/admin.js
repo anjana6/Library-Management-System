@@ -10,6 +10,7 @@ router.post('/singUp',
     [
         check("name","Name is required").notEmpty(),
         check("nic","NIC is required").notEmpty(),
+        check("mobile","Plese include the Valid mobile number"),
         check("email","Please include a valid email").isEmail(),
         check("password","password with 6 or more character").isLength({min:6})
     ], async (req,res) =>{

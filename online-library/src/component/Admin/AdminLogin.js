@@ -18,8 +18,9 @@ const  AdminLogin = ({adminLogin,isAuthenticated}) => {
     const onSubmit = (e) => {
         e.preventDefault();
         adminLogin({email,password});
-        console.log(state);
-    }
+        //console.log(state);
+    };
+    
     if(isAuthenticated){
         return <Redirect to='/book/adminviewbooks'/>
         

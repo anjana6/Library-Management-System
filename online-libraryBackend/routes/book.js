@@ -7,7 +7,7 @@ const auth = require('../middleware/auth');
 router.get('/',auth,async (req,res) =>{
     try {
         const books = await Book.find();
-        res.status(200).json({books});
+        res.status(200).json(books);
     } catch (err) {
         console.error(err.message);
         res.status(500).send("Server Error");
@@ -62,7 +62,7 @@ router.post('/searchAuther',async (req,res) =>{
     try {
         const books = await Book.find({autherName});
         
-        res.status(200).json({books});
+        res.status(200).json(books);
     } catch (err) {
         console.error(err.message);
         
@@ -70,10 +70,12 @@ router.post('/searchAuther',async (req,res) =>{
 });
 // search book using bookId
 router.post('/searchBookId', async (req,res) =>{
-    try {
-        const book = await Book.findOne({bookId:req.body.bookId});
 
-        res.status(200).json({book});
+    const bookId = new RegExp(req.body.bookId,"gi");
+    try {
+        const books = await Book.find({bookId});
+
+        res.status(200).json(books);
     } catch (err) {
         console.error(err.message);
         
@@ -98,7 +100,7 @@ router.put('/update/:id',auth, async (req,res) =>{
     }
 })
 // delete the books
-router.delete('/delete/:id', async (req,res) =>{
+router.delete('/delete/:id',auth, async (req,res) =>{
     try {
         await Book.findByIdAndRemove({_id:req.params.id})
 

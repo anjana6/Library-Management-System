@@ -10,7 +10,6 @@ import AdminLogin from './Component/Admin/AdminLogin';
 import UserRegister from './Component/User/UserRegister';
 import AddBooks from './Component/Book/AddBook/AddBooks';
 import UserViewBooks from './Component/Book/ViewBook/UserViewBook/UserViewBooks';
-import UserNavbar from './Component/Layout/UserNavBar';
 import AdminRegister from './Component/Admin/AddminRegister';
 import AdminViewBooks from './Component/Book/ViewBook/AdminViewBook/AdminViewBooks';
 import EditBook from './Component/Book/EditBook/EditBook';
@@ -19,7 +18,6 @@ const App = () => {
     return (
         <Router>
             <Fragment>
-                <UserNavbar/>
                 <Switch>
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/user/login' component={UserLogin}/>

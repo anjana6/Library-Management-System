@@ -1,71 +1,88 @@
-import React from 'react';
+import React, { Fragment,useState } from 'react';
+import {adminRegister} from '../../actions/authAction';
+import {Form,Col,Button,Card, Container } from 'react-bootstrap';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
-import {Form,Col,Button,Card } from 'react-bootstrap';
+const  AdminRegister = ({adminRegister,isRegister}) => {
 
-const  UserRegister = () => {
-     
+    const [state, setstate] = useState({name:'',email:'',nic:'',mobileNo:'',password:'',comPassword:''});
 
+    const {name,nic,email,mobileNo,password,comPassword} = state;
+
+    const onChange = (e) => {
+       setstate({...state,[e.target.name] : e.target.value}) ;
+    //    console.log(state);
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if(password !== comPassword){
+            console.log("password wrong");
+
+        }else{
+            adminRegister({name,nic,email,mobileNo,password});
+            
+        }
+
+    }
+
+    if (isRegister) {
+        return <Redirect to='/admin/login'/>
+    }
     return (
-        <div>
-            <Card className="userRegisterForm" style={{ width: '40rem', height:'40rem'}}>
+        <Fragment>
+            <Container>
+            <Card>
                 <Card.Body>
                     <Card.Title className="text-center">Register</Card.Title>
-                    <Card.Text>
-                        <Form>
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail">
+                    
+                        <Form onSubmit={onSubmit}>
+                                <Form.Group >
                                 <Form.Label>Full Name</Form.Label>
-                                <Form.Control type="text" placeholder="Full Name" />
+                                <Form.Control type="text" placeholder="Full Name" name="name" onChange={onChange}/>
                                 </Form.Group>
-                            </Form.Row>
-                            <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail" >
-                                <Form.Label>Student No</Form.Label>
-                                <Form.Control type="text" placeholder="Student No" />
-                                </Form.Group>
-
-                                <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Label>NIC</Form.Label>
-                                <Form.Control type="text" placeholder="NIC" />
-                                </Form.Group>
-                            </Form.Row>
-
-                            <Form.Group controlId="formGridAddress1" className="w-25">
+                            <Form.Group >
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" placeholder="Email" />
+                                <Form.Control type="email" placeholder="Email" name="email" onChange={onChange}/>
                             </Form.Group>
                             <Form.Row>
-                                <Form.Group as={Col} controlId="formGridEmail">
-                                <Form.Label>Tel No:</Form.Label>
-                                <Form.Control type="number" placeholder="Tel" />
+                                <Form.Group as={Col} >
+                                <Form.Label>NIC</Form.Label>
+                                <Form.Control type="text" placeholder="NIC" name="nic" onChange={onChange} />
                                 </Form.Group>
 
-                                <Form.Group as={Col} controlId="formGridPassword">
-                                <Form.Label>Mobile No:</Form.Label>
-                                <Form.Control type="number" placeholder="Mobile" />
+                                <Form.Group as={Col}>
+                                <Form.Label>Mobile No</Form.Label>
+                                <Form.Control type="text" placeholder="Mobile No" name="mobileNo" onChange={onChange}/>
                                 </Form.Group>
                             </Form.Row>
-
                             <Form.Row>
                                 <Form.Group as={Col} controlId="formGridEmail">
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder="Password" />
+                                <Form.Control type="password" placeholder="Password" name="password" onChange={onChange}/>
                                 </Form.Group>
 
                                 <Form.Group as={Col} controlId="formGridPassword">
                                 <Form.Label>Comform Password</Form.Label>
-                                <Form.Control type="password" placeholder="Comform Password" />
+                                <Form.Control type="password" placeholder="Comform Password" name="comPassword" onChange={onChange}/>
                                 </Form.Group>
                             </Form.Row>
                             <Button className="mt-5" variant="primary" type="submit" block>
                                 Submit
                             </Button>
                         </Form>
-                    </Card.Text>
+                    
                 </Card.Body>
             </Card>
-        </div>
+            </Container>
+            
+        </Fragment>
     )
 }
 
-export default UserRegister;
+const mapStateToProps = state =>({
+    isRegister : state.auth.isRegister
+})
+
+export default connect(mapStateToProps,{adminRegister})(AdminRegister);

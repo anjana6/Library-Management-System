@@ -19,13 +19,11 @@ const  AddBooks = ({addBooks,isBookAdd}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        
-        console.log(state);
+        console.log('hii');
         addBooks(state);
     }
 
-    // console.log(isBookAdd);
-    if(isBookAdd === 'success'){
+    if(isBookAdd){
         return <Redirect to='/book/adminviewbooks'/>
     }
     return (
@@ -56,7 +54,7 @@ const  AddBooks = ({addBooks,isBookAdd}) => {
 
                             <Form.Row>
                                 <Form.Group as={Col} controlId="formGridEmail">
-                                <Form.Label>No OF Books</Form.Label>
+                                <Form.Label>No Of Books</Form.Label>
                                 <Form.Control type="text" placeholder="Number of Books" name="numberOfBooks" value={numberOfBooks} onChange={onChange}/>
                                 </Form.Group>
 
@@ -93,6 +91,6 @@ const  AddBooks = ({addBooks,isBookAdd}) => {
 }
 
 const mapStateToProps = state => ({
-    isBookAdd : state.book.addbook
+    isBookAdd : state.book.isBookAdd
 })
 export default connect(mapStateToProps,{addBooks})(AddBooks);
