@@ -5,7 +5,7 @@ import {logOut} from '../../actions/authAction';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const  UserNavBar = ({searchAuther,getBooks}) => {
+const  UserNavBar = ({searchAuther,getBooks,logOut}) => {
     const [autherName,setAutherName] = useState("");
 
     const onChange = (e) =>{
@@ -39,4 +39,4 @@ const  UserNavBar = ({searchAuther,getBooks}) => {
     )
 }
 
-export default connect(null,{searchAuther,getBooks})(UserNavBar);
+export default connect(null,{searchAuther,getBooks,logOut})(UserNavBar);

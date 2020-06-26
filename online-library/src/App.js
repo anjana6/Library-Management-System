@@ -13,6 +13,7 @@ import UserViewBooks from './Component/Book/ViewBook/UserViewBook/UserViewBooks'
 import AdminRegister from './Component/Admin/AddminRegister';
 import AdminViewBooks from './Component/Book/ViewBook/AdminViewBook/AdminViewBooks';
 import EditBook from './Component/Book/EditBook/EditBook';
+import NotFound from './Component/Layout/NotFound';
 
 const App = () => {
     return (
@@ -29,6 +30,7 @@ const App = () => {
                     <Route exact path='/book/adminviewbooks' component={AdminViewBooks}/>
                     <Route exact path='/book/edit/:id' component={EditBook}/>
                     <Route exact path='/book/delete/:id' component={AddBooks}/>
+                    <Route component={NotFound}/>
                 </Switch>
             </Fragment>
         </Router>

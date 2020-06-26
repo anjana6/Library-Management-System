@@ -5,7 +5,7 @@ import {GETALLBOOKS,ADDBOOK,BOOKDETAILS, SEARCHBOOKS,DELETE_BOOK,SEARCHBOOKSID} 
 export const getBooks = () =>async dispatch =>{
     try {
         const res = await axios.get(`${endPoint}/api/book`);
-       //console.log(res.data);
+       console.log(res.data);
         dispatch({
             type: GETALLBOOKS,
             payload: res.data
@@ -36,9 +36,10 @@ export const addBooks = (formdata) => async dispatch => {
     }
 };
 
-export const getDetails = (id) =>async dispatch => {
+export const getBook = (id) =>async dispatch => {
     try {
         const res = await axios.get(`${endPoint}/api/book/details/${id}`);
+        console.log(res.data)
         dispatch({
             type:BOOKDETAILS,
             payload:res.data

@@ -1,9 +1,10 @@
 import React from 'react';
-import {Navbar,Nav,} from 'react-bootstrap';
+import {Navbar,Nav,Form,FormControl} from 'react-bootstrap';
 import {logOut} from '../../actions/authAction';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const  AdminNavBar = () => {
+const  AdminNavBar = ({logOut}) => {
     return (
         
         <Navbar bg="dark" variant="dark">
@@ -18,4 +19,4 @@ const  AdminNavBar = () => {
     )
 }
 
-export default AdminNavBar;
+export default connect(null,{logOut})(AdminNavBar);

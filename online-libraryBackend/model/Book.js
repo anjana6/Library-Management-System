@@ -15,7 +15,7 @@ const BooksSchema = new mongoose.Schema({
         required:true
     },
     quentity:{
-        type:Number
+        type:String
     },
     cost:{
         type:Number,

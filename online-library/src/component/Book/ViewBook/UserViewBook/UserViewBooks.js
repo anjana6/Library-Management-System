@@ -10,31 +10,27 @@ const  UserViewBooks = ({getBooks,book}) => {
      useEffect(() => {
         getBooks();
     }, [getBooks]);
-
-    // console.log(book);
-// if(book.books)
-   
-//     {book.books.map(book => {
-//         return (
-//             console.log(book.title)
-//         )
-//     })}
     
 
     return (
-        
         <Fragment >
             <UserNavBar/>
             <Container>
-                <Row>
-                    {book && book.map(book =>{
-                    return (
-                        <Col lg={6} key={book._id}>
-                            <ViewItem  title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
-                        </Col>    
-                    )
-                })}
-                </Row>
+                {book.length > 0 ?
+                    <Row>
+                    { book.map(book =>{
+                        return (
+                            <Col lg={6} key={book._id}>
+                                <ViewItem  title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
+                            </Col>    
+                        )
+                    })}
+                    </Row>
+                    :
+                    <Row>
+                        <h1>This Book not Found Here</h1>
+                    </Row>
+                }
             </Container>
         </Fragment>
     )

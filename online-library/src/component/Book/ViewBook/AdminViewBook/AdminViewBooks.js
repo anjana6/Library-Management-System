@@ -11,37 +11,48 @@ const  AdminViewBooks = ({getBooks,book}) => {
      useEffect(() => {
         getBooks();
     }, [getBooks]);
-
+    console.log(book.length);
     return (
         <Fragment >
             <AdminNavBar/>
             <Search/>
             <Container>
                 <Row>
-                    <Link to='/book/addbook' className="addbutton"><Button className="m-3"  variant="success">ADD BOOK</Button></Link>
+                    <Link to='/book/addbook' className="addbutton">
+                        <Button className="m-3"  variant="success">ADD BOOK</Button>
+                    </Link>
                 </Row>
-                <Row>
-                {book && book.map(book =>{
-                return (
-                    <Col lg={6} key={book._id}>
-                        <ViewItem  id={book._id} title={book.title} auther={book.autherName} bookId={book.bookId} description={book.description}/>
-                    </Col>
-                )
-            })}
-                </Row>
-                   
-            </Container>
-           
-            
-         </Fragment>
-       
-       
-            
+                {book.length >0 ?
+                    <Row>
+                    { book.map(book =>{
+                        return (
+                            
+                            <Col lg={6} key={book._id}>
+                                <ViewItem  
+                                    id={book._id} 
+                                    title={book.title} 
+                                    auther={book.autherName} 
+                                    bookId={book.bookId} 
+                                    description={book.description}
+                                    numberofbook={book.numberOfBooks}
+                                    priceofonebook={book.cost}
+                                    />
+                            </Col>
 
+                        )
+                    })}
+                    </Row>
+                    : 
+                    <Row>
+                        <h1>This book is not found</h1>
+                    </Row>
+                }
+                   
+            </Container>  
+         </Fragment>
     )
 }
 const mapStateToProps = state => ({
-    
     book: state.book.allBooks
 })
 

@@ -9,8 +9,6 @@ const Search = ({searchBookId,getBooks}) => {
 
     const onChange = (e) =>{
         setBookId({...bookId,search:e.target.value});
-        console.log(bookId);
-        //searchBookId(bookId);
         bookId.search.length>=2 ? searchBookId(bookId): getBooks();
        
     }

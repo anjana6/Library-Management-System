@@ -12,16 +12,24 @@ router.post('/singUp',
         check("Lname","Lname is required").notEmpty(),
         check("nic","NIC is required").notEmpty(),
         check("email","Please include a valid email").isEmail(),
-        check("password","password with 6 or more character").isLength({min:6})
+        check("password","password with 6 or more character").isLength({min:6}),
+        check("comPassword","password is required").isLength({min:6}),
     ], async (req,res) =>{
     try {
         const errors = validationResult(req);
             if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
+                let error = {}
+                errors.array().map(err => error[err.param]= err.msg)
+                return res.status(400).json({error});
+        }
+        const {emial,password,comPassword} = req.body
+        console.log(comPassword);
+        if(password !== comPassword){
+            return res.status(400).json({error:{msg:'Your comform Password is Wrong'}})
         }
         const userExist = await User.findOne({email:req.body.email});
+        
         if(userExist){
-
             return res.status(400).json({errors:[{msg:"email is already exist"} ]});
         }
 
@@ -48,11 +56,13 @@ router.post('/singIn',[
     try {
         const errors = validationResult(req);
             if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
+                let error = {}
+                errors.array().map(err => error[err.param] = err.msg)
+                return res.status(422).json({error});
         }
         const user = await User.findOne({email:req.body.email});
         if(!user){
-            return res.status(400).json({error:"You are not Register"});
+            return res.status(400).json({error:{msg:"You are not Register,Please Register first"}});
         }
         const isMatchPassword = await bcrypt.compare(req.body.password,user.password);
         if(!isMatchPassword){

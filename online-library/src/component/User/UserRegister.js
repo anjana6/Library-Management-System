@@ -5,8 +5,9 @@ import {connect} from 'react-redux';
 
 import {Form,Col,Button,Card } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
+import AlertMessage from '../Layout/AlertMessage';
 
-const  UserRegister = ({userRegister,isRegister}) => {
+const  UserRegister = ({userRegister,auth:{isRegister,errors}}) => {
     const [state, setstate] = useState({Fname:'',Lname:'',studentNo:'',nic:'',email:'',telNo:'',mobileNo:'',password:'',comPassword:''});
     const {Fname,Lname,studentNo,nic,email,telNo,mobileNo,password,comPassword} = state;
 
@@ -16,13 +17,9 @@ const  UserRegister = ({userRegister,isRegister}) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if(password !== comPassword){
-            console.log("password wrong");
-
-        }else{
-            userRegister({Fname,Lname,studentNo,nic,email,telNo,mobileNo,password});
+       userRegister(state);
             
-        }
+        
     }
 
     if (isRegister) {
@@ -31,7 +28,8 @@ const  UserRegister = ({userRegister,isRegister}) => {
 
     return (
         <Fragment>
-            { <Card className="userRegisterForm" style={{ width: '40rem', height:'40rem'}}>
+            {errors && errors.msg && <AlertMessage msg={errors.msg}/>}
+             <Card className="userRegisterForm" style={{ width: '40rem', height:'40rem'}}>
                 <Card.Body>
                     <Card.Title className="text-center">Register</Card.Title>
                     
@@ -40,11 +38,13 @@ const  UserRegister = ({userRegister,isRegister}) => {
                                 <Form.Group as={Col}>
                                 <Form.Label>First Name</Form.Label>
                                 <Form.Control type="text" placeholder="First Name" name="Fname" value={Fname} onChange={onChange} />
+                                <div style={{color:"red"}}>{errors &&  errors.Fname}</div>
                                 </Form.Group>
-
+                                
                                 <Form.Group as={Col}>
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control type="text" placeholder="Last Name" name="Lname" value={Lname} onChange={onChange}/>
+                                <div style={{color:"red"}}>{errors &&  errors.Lname}</div>
                                 </Form.Group>
                             </Form.Row>
                             <Form.Row>
@@ -56,6 +56,7 @@ const  UserRegister = ({userRegister,isRegister}) => {
                                 <Form.Group as={Col}>
                                 <Form.Label>NIC</Form.Label>
                                 <Form.Control type="text" placeholder="NIC" name="nic" value={nic} onChange={onChange}/>
+                                <div style={{color:"red"}}>{errors &&  errors.nic}</div>
                                 </Form.Group>
                             </Form.Row>
 
@@ -63,6 +64,7 @@ const  UserRegister = ({userRegister,isRegister}) => {
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="email" placeholder="Email" name="email" value={email} onChange={onChange}/>
                             </Form.Group>
+                            <div style={{color:"red"}}>{errors &&  errors.email}</div>
                             <Form.Row>
                                 <Form.Group as={Col} >
                                 <Form.Label>Tel No:</Form.Label>
@@ -79,8 +81,9 @@ const  UserRegister = ({userRegister,isRegister}) => {
                                 <Form.Group as={Col}>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={onChange} />
+                                <div style={{color:"red"}}>{errors &&  errors.password}</div>
                                 </Form.Group>
-
+                                
                                 <Form.Group as={Col}>
                                 <Form.Label>Comform Password</Form.Label>
                                 <Form.Control type="password" placeholder="Comform Password" name="comPassword" value={comPassword} onChange={onChange}/>
@@ -92,13 +95,13 @@ const  UserRegister = ({userRegister,isRegister}) => {
                         </Form>
                     
                 </Card.Body>
-            </Card> }
+            </Card> 
         </Fragment>
     )
 }
 
 const mapStateToProps = state => ({
-     isRegister : state.auth.isRegister
+     auth : state.auth
 })
 
 export default connect(mapStateToProps,{userRegister})(UserRegister);

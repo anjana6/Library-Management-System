@@ -12,17 +12,24 @@ router.post('/singUp',
         check("nic","NIC is required").notEmpty(),
         check("mobile","Plese include the Valid mobile number"),
         check("email","Please include a valid email").isEmail(),
-        check("password","password with 6 or more character").isLength({min:6})
+        check("password","password with 6 or more character").isLength({min:6}),
+        check("comPassword","Plese include password").notEmpty()
     ], async (req,res) =>{
     try {
         const errors = validationResult(req);
             if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
+                const error = {}
+                errors.array().map(err => error[err.param]= err.msg)
+            return res.status(422).json({ error});
+        }
+        const {password,comPassword} = req.body;
+        if(password !== comPassword){
+            return res.status(400).json({error:{msg:"You conform password not equal to password"}})
         }
         const emailExist = await Admin.findOne({email:req.body.email});
         if(emailExist){
 
-            return res.status(400).json({error: "Email is already exist"});
+            return res.status(400).json({error: {msg:"Email is already exist"}});
         }
 
 
@@ -43,20 +50,22 @@ router.post('/singUp',
 
 router.post('/singIn',[
     check("email","Please include a valid email").isEmail(),
-    check("password","password with 6 or more character").isLength({min:6})
+    check("password","password is required").notEmpty()
 ],async (req,res)=>{
     try {
         const errors = validationResult(req);
             if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
+                const error = {}
+                errors.array().map(err => error[err.param]= err.msg)
+                return res.status(422).json({ error });
         }
         const admin = await Admin.findOne({email:req.body.email});
         if(!admin){
-            return res.status(400).json({error:"You can't loging"});
+            return res.status(400).json({error:{msg:"You email is wrong"}});
         }
         const isMatchPassword = await bcrypt.compare(req.body.password,admin.password);
         if(!isMatchPassword){
-            return res.status(400).json({error:"Your password is not Match"});
+            return res.status(400).json({error:{msg:"Your password is not Match"}});
         }
 
         jwt.sign(
