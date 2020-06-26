@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar,Nav,Form,FormControl} from 'react-bootstrap';
+import {Navbar,Nav} from 'react-bootstrap';
 import {logOut} from '../../actions/authAction';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';

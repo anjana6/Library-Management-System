@@ -24,11 +24,10 @@ export const addBooks = (formdata) => async dispatch => {
         }
     }
     try{
-        const res = await axios.post(`${endPoint}/api/book/add`,formdata,config);
-        //console.log(res.data);
+        await axios.post(`${endPoint}/api/book/add`,formdata,config);
+        
         dispatch({
             type:ADDBOOK,
-           // payload:res.data
         })
     }catch(err){
         const errors = err.response.data.errors;

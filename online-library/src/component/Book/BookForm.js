@@ -1,7 +1,7 @@
 import React from 'react'
 import {Form,Col,Button,Card,Row,InputGroup, Container } from 'react-bootstrap';
 
-const NewForm = ({onChange,onSubmit,state}) => {
+const BookForm = ({onChange,onSubmit,state}) => {
 
     const {bookId,title,autherName,quentity,cost,description,numberOfBooks} = state;
 
@@ -109,4 +109,4 @@ const NewForm = ({onChange,onSubmit,state}) => {
     )
 }
 
-export default NewForm
+export default BookForm

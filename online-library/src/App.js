@@ -8,11 +8,11 @@ import UserLogin from './Component/User/UserLogin';
 import Home from './Component/Layout/Home';
 import AdminLogin from './Component/Admin/AdminLogin';
 import UserRegister from './Component/User/UserRegister';
-import AddBooks from './Component/Book/AddBook/AddBooks';
+import AddBooks from './Component/Book/AddBooks';
 import UserViewBooks from './Component/Book/ViewBook/UserViewBook/UserViewBooks';
 import AdminRegister from './Component/Admin/AddminRegister';
 import AdminViewBooks from './Component/Book/ViewBook/AdminViewBook/AdminViewBooks';
-import EditBook from './Component/Book/EditBook/EditBook';
+import EditBook from './Component/Book/EditBook';
 import NotFound from './Component/Layout/NotFound';
 
 const App = () => {
