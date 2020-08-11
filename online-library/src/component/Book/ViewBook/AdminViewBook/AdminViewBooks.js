@@ -9,10 +9,11 @@ import AdminNavBar from '../../../Layout/AdminNavBar';
 import Search from '../../../Layout/Search';
 
 const  AdminViewBooks = ({getBooks,book}) => {
+
      useEffect(() => {
         getBooks();
     }, [getBooks]);
-    console.log(book.length);
+    
     return (
         <Fragment >
             <AdminNavBar/>
@@ -47,14 +48,14 @@ const  AdminViewBooks = ({getBooks,book}) => {
                     <Row>
                         <h1>This book is not found</h1>
                     </Row>
-                }
-                   
+                }       
             </Container>  
          </Fragment>
     )
 }
+
 const mapStateToProps = state => ({
     book: state.book.allBooks
-})
+});
 
 export default connect(mapStateToProps,{getBooks})(AdminViewBooks);

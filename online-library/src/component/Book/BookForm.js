@@ -1,15 +1,18 @@
 import React from 'react'
 import {Form,Col,Button,Card,Row,InputGroup, Container } from 'react-bootstrap';
 
-const BookForm = ({onChange,onSubmit,state}) => {
+import AlertMessage from '../Layout/AlertMessage';
+
+const BookForm = ({onChange,onSubmit,state,errors,headerTitle}) => {
 
     const {bookId,title,autherName,quentity,cost,description,numberOfBooks} = state;
 
     return (
         <Container>
+            {errors && errors.msg && <AlertMessage msg={errors.msg}/>}
             <Card className="m-5">
                 <Card.Body>
-                    <Card.Title className="text-center">ADD BOOK</Card.Title>
+                    <Card.Title className="text-center">{headerTitle}</Card.Title>
                         <Form onSubmit={onSubmit}>
                             <Form.Group as={Row} controlId="formPlaintextPassword" >
                                 <Form.Label column sm="2">Book Id</Form.Label>
@@ -23,6 +26,7 @@ const BookForm = ({onChange,onSubmit,state}) => {
                                         onChange={onChange}
                                         />
                                 </Col>
+                                <div style={{color:"red"}}>{errors &&  errors.bookId}</div>
                             </Form.Group>   
                             <Form.Group as={Row} controlId="formPlaintextPassword" >
                                 <Form.Label column sm="2">Title</Form.Label>
@@ -35,6 +39,7 @@ const BookForm = ({onChange,onSubmit,state}) => {
                                         onChange={onChange}
                                         />
                                 </Col>
+                                <div style={{color:"red"}}>{errors &&  errors.title}</div>
                             </Form.Group>
                             <Form.Group as={Row} controlId="formPlaintextPassword" >
                                 <Form.Label column sm="2">AutherName</Form.Label>
@@ -47,6 +52,7 @@ const BookForm = ({onChange,onSubmit,state}) => {
                                         onChange={onChange}
                                         />
                                 </Col>
+                                <div style={{color:"red"}}>{errors &&  errors.autherName}</div>
                             </Form.Group>
 
                             <Form.Row>
@@ -98,6 +104,7 @@ const BookForm = ({onChange,onSubmit,state}) => {
                                             />
                                     </InputGroup>
                                 </Col>
+                                <div style={{color:"red"}}>{errors &&  errors.cost}</div>
                             </Form.Group>
                             <Button className="mt-5" variant="primary" type="submit" block>
                                 Submit
@@ -109,4 +116,4 @@ const BookForm = ({onChange,onSubmit,state}) => {
     )
 }
 
-export default BookForm
+export default BookForm;

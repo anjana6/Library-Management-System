@@ -1,16 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import {connect} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-
+import { Redirect } from 'react-router-dom';
 
 import {getBook,editBooks} from '../../actions/booksAction';
 import BookForm from './BookForm';
 
+const  EditBooks = ({match,getBook,editBooks,book:{editdetail,book,errors,isBookAdd}}) => {
 
-
-
-const  EditBooks = ({match,getBook,editBooks,book:{editdetail,book}}) => {
-    const history = useHistory();
     const [state, setState] = useState({bookId:'',title:'',autherName:'',quentity:'',cost:'',description:'',numberOfBooks:''});
     const Id = match.params.id;
 
@@ -18,7 +14,6 @@ const  EditBooks = ({match,getBook,editBooks,book:{editdetail,book}}) => {
         getBook(match.params.id);
         setDetails()    
     }, [getBook,match.params.id,editdetail]);
-
 
     const setDetails = () => {
         setState({
@@ -30,29 +25,34 @@ const  EditBooks = ({match,getBook,editBooks,book:{editdetail,book}}) => {
             description: editdetail ||!book.description? '' : book.description,
             numberOfBooks: editdetail || !book.numberOfBooks? '' : book.numberOfBooks
         })
-    
       }
   
-    
-
     const onChange = (e) => {
         setState({...state,[e.target.name]:e.target.value})
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        editBooks(Id,state);
-        history.push('/book/adminviewbooks');
-        
+        editBooks(Id,state);  
     }
+
+    if(isBookAdd){
+        return <Redirect to='/book/adminviewbooks'/>
+    }
+
     return (
-        <BookForm onChange={onChange} onSubmit={onSubmit} state={state}/>  
+        <BookForm 
+            onChange={onChange} 
+            onSubmit={onSubmit} 
+            state={state} 
+            errors={errors}
+            headerTitle="EDIT BOOK"
+            />  
     )
 }
 
 const mapStateToProps = state =>({
     book: state.book
-})
-
+});
 
 export default connect(mapStateToProps,{getBook,editBooks})(EditBooks);

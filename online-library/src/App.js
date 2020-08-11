@@ -1,16 +1,16 @@
-import React, { Fragment } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'semantic-ui-css/semantic.min.css';
-import './App.css';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
-import UserLogin from './Component/User/UserLogin';
+
+import UserLogin from './Component/auth/User/UserLogin';
 import Home from './Component/Layout/Home';
-import AdminLogin from './Component/Admin/AdminLogin';
-import UserRegister from './Component/User/UserRegister';
+import AdminLogin from './Component/auth/Admin/AdminLogin';
+import UserRegister from './Component/auth/User/UserRegister';
 import AddBooks from './Component/Book/AddBooks';
 import UserViewBooks from './Component/Book/ViewBook/UserViewBook/UserViewBooks';
-import AdminRegister from './Component/Admin/AddminRegister';
+import AdminRegister from './Component/auth/Admin/AddminRegister';
 import AdminViewBooks from './Component/Book/ViewBook/AdminViewBook/AdminViewBooks';
 import EditBook from './Component/Book/EditBook';
 import NotFound from './Component/Layout/NotFound';

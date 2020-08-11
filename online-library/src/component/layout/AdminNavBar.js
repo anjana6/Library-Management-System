@@ -1,8 +1,10 @@
 import React from 'react';
-import {Navbar,Nav} from 'react-bootstrap';
-import {logOut} from '../../actions/authAction';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import {Navbar,Nav} from 'react-bootstrap';
+
+import {logOut} from '../../actions/authAction';
+
 
 const  AdminNavBar = ({logOut}) => {
     return (

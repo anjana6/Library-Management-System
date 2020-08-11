@@ -3,7 +3,7 @@ const router = express.Router();
 const Book = require('../model/Book');
 const {check,validationResult} = require('express-validator');
 const auth = require('../middleware/auth');
-// get all the books datils
+
 router.get('/',auth,async (req,res) =>{
     try {
         const books = await Book.find();
@@ -13,10 +13,8 @@ router.get('/',auth,async (req,res) =>{
         res.status(500).send("Server Error");
         
     }
-  
-
 });
-// get book details
+
 router.get('/details/:id',auth,async(req,res)=>{
     try {
         const book = await Book.findById(req.params.id);
@@ -27,7 +25,7 @@ router.get('/details/:id',auth,async(req,res)=>{
         
     }
 })
-// add the book into database
+
 router.post('/add',
     [
         check("bookId","BookId is required").notEmpty(),
@@ -54,11 +52,11 @@ router.post('/add',
     }
 });
 
-// searching books using autherName
+
 router.post('/searchAuther',async (req,res) =>{
-    // console.log(req.body);
+   
     const autherName = new RegExp(req.body.autherName,"gi");
-    console.log(autherName);
+    
     try {
         const books = await Book.find({autherName});
         
@@ -68,7 +66,7 @@ router.post('/searchAuther',async (req,res) =>{
         
     }
 });
-// search book using bookId
+
 router.post('/searchBookId', async (req,res) =>{
 
     const bookId = new RegExp(req.body.bookId,"gi");
@@ -84,8 +82,6 @@ router.post('/searchBookId', async (req,res) =>{
 
 router.put('/update/:id',auth, async (req,res) =>{
     try {
-
-        
             const book = await Book.findOneAndUpdate({_id:req.params.id},
                 { $set: req.body },
                 { new: true }
@@ -99,7 +95,7 @@ router.put('/update/:id',auth, async (req,res) =>{
         
     }
 })
-// delete the books
+
 router.delete('/delete/:id',auth, async (req,res) =>{
     try {
         await Book.findByIdAndRemove({_id:req.params.id})

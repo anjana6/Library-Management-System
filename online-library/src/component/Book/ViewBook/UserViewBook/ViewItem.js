@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import {Card} from 'react-bootstrap';
 
-
-
 const ViewItem = ({title,auther,bookId,description}) => {
     return (
         <Fragment>

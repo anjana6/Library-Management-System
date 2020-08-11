@@ -1,17 +1,19 @@
-import React,{useEffect,Fragment} from 'react'
-import { getBooks } from '../../../../actions/booksAction';
+import React,{useEffect,Fragment} from 'react';
 import { connect } from 'react-redux';
+import {Container,Row,Col} from 'react-bootstrap';
+
+import { getBooks } from '../../../../actions/booksAction';
 import ViewItem from './ViewItem';
 import UserNavBar from '../../../Layout/UserNavBar';
 
-import {Container,Row,Col} from 'react-bootstrap';
+
 
 const  UserViewBooks = ({getBooks,book}) => {
+
      useEffect(() => {
         getBooks();
     }, [getBooks]);
     
-
     return (
         <Fragment >
             <UserNavBar/>
@@ -35,8 +37,9 @@ const  UserViewBooks = ({getBooks,book}) => {
         </Fragment>
     )
 }
+
 const mapStateToProps = state => ({
     book: state.book.allBooks
-})
+});
 
 export default connect(mapStateToProps,{getBooks})(UserViewBooks);

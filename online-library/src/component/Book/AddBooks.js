@@ -5,13 +5,9 @@ import { Redirect } from 'react-router-dom';
 import { addBooks } from '../../actions/booksAction';
 import BookForm from './BookForm';
 
-
-
-const  AddBooks = ({addBooks,isBookAdd}) => {
+const  AddBooks = ({addBooks,book:{isBookAdd,errors}}) => {
 
     const [state, setState] = useState({bookId:'',title:'',autherName:'',quentity:'',cost:'',description:'',numberOfBooks:''});
-
-    
 
     const onChange = (e) => {
         setState({...state,[e.target.name]:e.target.value});
@@ -25,12 +21,20 @@ const  AddBooks = ({addBooks,isBookAdd}) => {
     if(isBookAdd){
         return <Redirect to='/book/adminviewbooks'/>
     }
+
     return (
-        <BookForm state={state} onChange={onChange} onSubmit={onSubmit}/>
+        <BookForm 
+            state={state} 
+            onChange={onChange} 
+            onSubmit={onSubmit} 
+            errors={errors}
+            headerTitle="ADD BOOK"
+            />
     )
 }
 
 const mapStateToProps = state => ({
-    isBookAdd : state.book.isBookAdd
-})
+    book : state.book
+});
+
 export default connect(mapStateToProps,{addBooks})(AddBooks);
